@@ -2,11 +2,9 @@ package br.com.vinicraveiro.vendas.controller;
 
 import br.com.vinicraveiro.vendas.VendasApplication;
 import br.com.vinicraveiro.vendas.domain.Vendedor;
+import br.com.vinicraveiro.vendas.service.VendedorService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
 import java.util.ArrayList;
@@ -19,34 +17,33 @@ import java.util.Objects;
 public class VendedorController {
     //GET | POST | PUT | DELETE
 
+    private final VendedorService vendedorService;
+
+    public VendedorController(VendedorService vendedorService) {
+        this.vendedorService = vendedorService;
+    }
+
     @GetMapping
     public ResponseEntity<List<Vendedor>> listar() {
-        return ResponseEntity.ok(vendedores());
+        List<Vendedor> vendedores = vendedorService.listar();
+        return ResponseEntity.ok(vendedores);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Vendedor> especifico(@PathVariable("id") Long id){
-        Vendedor resultado = vendedores().stream().filter(vendedor -> vendedor.getId().equals(id)).findFirst().orElse(null);
+    public ResponseEntity<Vendedor> especifico(@PathVariable("id") Long id) {
+        Vendedor resultado = vendedorService.unicoVendedor(id);
 
-        if(Objects.isNull(resultado)){
+        if (Objects.isNull(resultado)) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(resultado);
     }
 
-    private List<Vendedor> vendedores() {
-        Vendedor um = new Vendedor();
-        um.setId(1L);
-        um.setNome("Joao");
-
-        Vendedor dois = new Vendedor();
-        dois.setId(2L);
-        dois.setNome("Mauricio");
-
-
-        return Arrays.asList(um, dois);
+    @PostMapping
+    public ResponseEntity<Vendedor> criar(@RequestBody Vendedor vendedor){
+        Vendedor novoVendedor = vendedorService.criar(vendedor);
+        return ResponseEntity.ok(novoVendedor);
     }
 
 }
