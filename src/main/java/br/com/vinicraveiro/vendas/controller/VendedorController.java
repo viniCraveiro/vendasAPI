@@ -2,7 +2,6 @@ package br.com.vinicraveiro.vendas.controller;
 
 import br.com.vinicraveiro.vendas.domain.Vendedor;
 import br.com.vinicraveiro.vendas.service.VendedorService;
-import org.springframework.data.annotation.Id;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
