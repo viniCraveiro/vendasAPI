@@ -1,14 +1,11 @@
 package br.com.vinicraveiro.vendas.controller;
 
-import br.com.vinicraveiro.vendas.VendasApplication;
 import br.com.vinicraveiro.vendas.domain.Vendedor;
 import br.com.vinicraveiro.vendas.service.VendedorService;
+import org.springframework.data.annotation.Id;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,11 +26,9 @@ public class VendedorController {
         return ResponseEntity.ok(vendedores);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Vendedor> especifico(@PathVariable("id") Long id) {
         Vendedor resultado = vendedorService.unicoVendedor(id);
-
         if (Objects.isNull(resultado)) {
             return ResponseEntity.notFound().build();
         }
@@ -41,9 +36,21 @@ public class VendedorController {
     }
 
     @PostMapping
-    public ResponseEntity<Vendedor> criar(@RequestBody Vendedor vendedor){
+    public ResponseEntity<Vendedor> criar(@RequestBody Vendedor vendedor) {
         Vendedor novoVendedor = vendedorService.criar(vendedor);
         return ResponseEntity.ok(novoVendedor);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vendedor> editar(@PathVariable("id") Long id, @RequestBody Vendedor vendedor) {
+        return ResponseEntity.ok(vendedorService.editar(id, vendedor));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
+        vendedorService.excluir(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
