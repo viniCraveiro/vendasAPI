@@ -11,10 +11,9 @@ import javax.persistence.Id;
 @Data
 public class Vendedor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
 
 }
 
