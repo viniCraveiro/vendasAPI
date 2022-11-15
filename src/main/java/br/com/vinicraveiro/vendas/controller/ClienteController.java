@@ -1,43 +1,19 @@
 package br.com.vinicraveiro.vendas.controller;
 
+import br.com.vinicraveiro.vendas.core.crud.CrudController;
 import br.com.vinicraveiro.vendas.domain.Cliente;
+import br.com.vinicraveiro.vendas.domain.Vendedor;
 import br.com.vinicraveiro.vendas.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/cliente")
-public class ClienteController {
+public class ClienteController extends CrudController<Cliente, Long> {
 
-    private final ClienteService clienteService;
-
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Cliente>> listar() {
-        List<Cliente> clientes = clienteService.listar();
-        return ResponseEntity.ok(clientes);
-    }
-
-    @PostMapping
-    public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente){
-        Cliente novoCliente = clienteService.criar(cliente);
-        return ResponseEntity.ok(novoCliente);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Cliente> editar(@PathVariable("id") Long id, @RequestBody Cliente cliente){
-        return ResponseEntity.ok(clienteService.editar(id,cliente));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        clienteService.excluir(id);
-        return ResponseEntity.ok().build();
-    }
 
 }
