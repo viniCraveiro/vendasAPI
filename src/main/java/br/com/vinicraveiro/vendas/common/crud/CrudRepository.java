@@ -1,4 +1,4 @@
-package br.com.vinicraveiro.vendas.core.crud;
+package br.com.vinicraveiro.vendas.common.crud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

@@ -1,6 +1,5 @@
-package br.com.vinicraveiro.vendas.repository;
+package br.com.vinicraveiro.vendas.domain.vendedor;
 
-import br.com.vinicraveiro.vendas.domain.Vendedor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

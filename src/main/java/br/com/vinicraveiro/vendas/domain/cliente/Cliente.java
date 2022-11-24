@@ -1,4 +1,4 @@
-package br.com.vinicraveiro.vendas.domain;
+package br.com.vinicraveiro.vendas.domain.cliente;
 
 import lombok.*;
 
@@ -11,13 +11,9 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Vendedor {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
 }
-
-
-

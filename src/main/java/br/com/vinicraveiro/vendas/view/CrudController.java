@@ -1,19 +1,22 @@
-package br.com.vinicraveiro.vendas.core.crud;
+package br.com.vinicraveiro.vendas.view;
 
-import br.com.vinicraveiro.vendas.domain.Cliente;
+import br.com.vinicraveiro.vendas.common.crud.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
 
-
 public abstract class CrudController<T, ID> {
+    public CrudController() {
+    }
 
-    @Autowired(required = true)
-    protected CrudService<T, ID> service;
+    public CrudController(CrudService<T, ID> service) {
+        this.service = service;
+    }
+
+    private CrudService<T, ID> service;
 
     @GetMapping
     public ResponseEntity<List<T>> listAll() {

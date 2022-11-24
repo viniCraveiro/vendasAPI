@@ -1,4 +1,4 @@
-package br.com.vinicraveiro.vendas.core.crud;
+package br.com.vinicraveiro.vendas.common.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
 public abstract class CrudService<T, ID> {
 
     @Autowired
-    protected CrudRepository<T, ID> repository;
+    private CrudRepository<T, ID> repository;
 
     public List<T> listAll() {
         return repository.findAll();
