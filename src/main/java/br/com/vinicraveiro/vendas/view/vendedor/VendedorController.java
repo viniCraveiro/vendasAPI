@@ -1,13 +1,11 @@
 package br.com.vinicraveiro.vendas.view.vendedor;
 
-import br.com.vinicraveiro.vendas.view.CrudController;
-import br.com.vinicraveiro.vendas.domain.vendedor.Vendedor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/vendedor")
-public class VendedorController extends CrudController<Vendedor, Long> {
-
+public class VendedorController {
 
 
 }

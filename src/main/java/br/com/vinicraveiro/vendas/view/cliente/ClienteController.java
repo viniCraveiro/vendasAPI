@@ -1,12 +1,11 @@
 package br.com.vinicraveiro.vendas.view.cliente;
 
-import br.com.vinicraveiro.vendas.view.CrudController;
-import br.com.vinicraveiro.vendas.domain.cliente.Cliente;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cliente")
-public class ClienteController extends CrudController<Cliente, Long> {
+public class ClienteController {
 
 
 }
